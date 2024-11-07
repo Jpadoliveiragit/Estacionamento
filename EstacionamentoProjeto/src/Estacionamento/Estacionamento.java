@@ -36,12 +36,12 @@ public class Estacionamento {
         for (Veiculo veiculo : veiculos) {
             if (veiculo.placa.equals(placa)) {
                 veiculo.horaSaida = java.time.LocalTime.now().toString();
-                // Calcular tempo de permanência
+               
                 long permanencia = java.time.Duration.between(java.time.LocalTime.parse(veiculo.horaEntrada), java.time.LocalTime.parse(veiculo.horaSaida)).toMinutes();
                 double valor = calcularValor(permanencia);
                 System.out.println("Valor a pagar: R$ " + valor);
 
-                // Liberar vaga
+               
                 for (Vaga vaga : vagas) {
                     if (vaga.tamanho.equals(veiculo.tamanho) && !vaga.disponibilidade) {
                         vaga.disponibilidade = true;
@@ -49,7 +49,7 @@ public class Estacionamento {
                     }
                 }
 
-                // Adicionar ao histórico
+               
                 historico.add("Placa: " + veiculo.placa + ", Tempo: " + permanencia + " minutos, Valor: R$ " + valor);
 
                 veiculos.remove(veiculo);
